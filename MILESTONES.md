@@ -2,8 +2,8 @@ DSL Description:
 	A script for abstracting programmable/automatic mouse clicks and keystrokes/macros. 
 
 Target user:
-	 * PC users
-	 * Game cheat
+	- PC users
+	- Game cheat
 	 * Any program requiring constant user activity
 	 * Software sequence for boot up
 	 * Password manager 
