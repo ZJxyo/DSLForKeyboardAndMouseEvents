@@ -136,7 +136,8 @@ Week 6:
 - Implementation tasks are to be divided among the team members equally. Each member can work on their portion individually, or group into pairs for pair programming. For pair programming, each pair shall take on the amount of work of 2 people. 
 - The user studies will be a collective effort. 
 - Debugging can be done in part individually or as a group. 
-- In case of emergencies, other members could take on more work to ensure timely progress. Team members shall meet with course staff/TAs based on availability.
+- In case of emergencies, other members could take on more work to ensure timely progress.
+- Team members shall meet with course staff/TAs based on availability.
 - Team members shall meet at least once a week to discuss and work on the project together.
 
 
