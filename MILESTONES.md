@@ -1,4 +1,4 @@
-# Milestone 1:
+# Milestone 1
 DSL Description:<br/>
 A script for abstracting programmable/automatic mouse clicks and keystrokes/macros. 
 
@@ -43,7 +43,7 @@ Planned Tasks/Features to design:
 - Examine the difficulty of feature implementation
 - Find user study candidates 
 
-# Milestone 2:<br/>
+# Milestone 2<br/>
 ## Draft Grammar<br/>
 program : (repeat | command)+ ;<br/>
 repeat : ‘Repeat’ NUM | ‘infinite’ ‘times’ (NEWLINE command)+ NEWLINE ‘End’ ;<br/>
