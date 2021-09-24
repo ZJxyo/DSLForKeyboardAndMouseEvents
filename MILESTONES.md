@@ -124,7 +124,7 @@ Week 6:
 - 10/13 Small twists if necessary
 - 10/15 Create video
 
-## Summary of Progress:
+## Summary of Progress
 - Written a description for our DSL project
 - Created a list for target users and use cases
 - Created a list of to be implemented features
@@ -132,7 +132,7 @@ Week 6:
 - Listed a roadmap/timeline of tasks to be done
 - Written the lexer and parser for our DSL language
 
-## Division of Tasks:
+## Division of Tasks
 - Implementation tasks are to be divided among the team members equally. Each member can work on their portion individually, or group into pairs for pair programming. For pair programming, each pair shall take on the amount of work of 2 people. 
 - The user studies will be a collective effort. 
 - Debugging can be done in part individually or as a group. 
