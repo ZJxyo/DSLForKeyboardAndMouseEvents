@@ -140,5 +140,89 @@ Week 6:
 - Team members shall meet with course staff/TAs based on availability.
 - Team members shall meet at least once a week to discuss and work on the project together.
 
+# Milestone 3
 
+## Concrete Langauge Design:
+program : (repeat | command)+ ;
+repeat : REPEAT_START (NUM | INFINITE) TIMES (command)+ REPEAT_END ;
+command : wait | mouse | input ;
+wait : WAIT NUM ;
+mouse : (press | hold | release (AT coord)?) | (AT coord) ;
+press : PRESS keys ;
+hold : HOLD keys ;
+release : RELEASE keys ;
+input : INPUT TEXT ;
+coord : NUM COMMA NUM ;
+keys : NUM (COMMA NUM)* ;
+
+## User Study
+
+### Activity 1:
+Select all at 200, 300, copy, then paste at 1200, 300
+
+Program: Command;
+Command: mouse
+
+Mouse : ‘press’ ’91 ‘,’ 65’   
+‘at’ ‘200’,’300’;  
+Mouse : release ‘1200 ‘.’ 300’;
+
+
+- The user got confused on when to hover, vs press, vs release.
+- He did not understand what input meant.
+- He did not know that "|" meant an OR operator.
+- Did not know how the coordinates work on screen (so didn't understand that 0,0 is top left) although not necessarily needed to code in the activities.
+- Did not complain about needing to calculate the key code, however would make the code more readable if we used the actual keys instead of int values.
+- User did not understand when to click.
+- User did not understand that the 'press' key word is consecutive for consecutive presses. He thought that you can press multiple keys at once, however for that functionality we use hold.
+
+### Comments during the coding
+- "I don't know how to code so I don't fully understand the example"
+- "I'm not sure where I am supposed to start. Do we write out "program" or not?"
+- "How am I supposed to input multiple key presses at once?"
+- "I must be an idiot for not being able to figure this out"
+
+After this example we walked through the grammar with him and explained the details to him. We went through the solution and then gave him the next example to try (which was far more difficult than the first example).
+
+
+### Activity 2:
+Search file name “testfile.txt” in file explorer in the downloads folder, delete the file, then close the window (windows shortcuts: https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec):
+
+Hold 91  
+Press 69  
+Release 91  
+Hold 18  
+Press 68  
+Release 18  
+Input Downloads  
+Press 13  
+Hold 17  
+Press 69  
+Release 17  
+Input testfile.txt  
+Press 13  
+Hold 17  
+Press 65  
+Release 17  
+Press 46  
+Hold 17  
+Press 87  
+Release 17
+
+
+### Comments during the coding:
+- “My computer doesn't have a windows key, how should I type that”
+- “This is such a grind to open these many tabs to write this out” (referring to opening windows shortcut
+- “I kind of wish I could visually see what was happening” (mac user not used to windows)
+- “What's the difference between an address box and search box?” (confusion in windows shortcut site)
+- “Wait what if there are multiple test files?”
+- “How do I select a folder inside here? I could do tab, or select all, but I might delete the wrong files”
+
+User got confused as to what he did earlier, because its hard to read the numbers and understand what you did earlier - either need comments in our language as well or have option for user to type out specific key
+
+
+Possible Sources of Confusion (Design Principles Reflection):
+Efficiency: The time it takes to do the simple tasks by coding is not ideal since it is simpler to do it manually. The examples we gave to the user were examples of things that are better done without programming, and that made the experience a bit frustrating since you are adding much more effort into something that doesn't need it. However for tasks that require a lot of repetition our language is good for, so it does not violate the efficiency design principal.
+
+Simplicity: Our program only has a small number of key words so is generally simple. The user studies validated that for us. 
 
