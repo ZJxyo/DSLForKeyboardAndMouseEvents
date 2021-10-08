@@ -226,3 +226,87 @@ Efficiency: The time it takes to do the simple tasks by coding is not ideal sinc
 
 Simplicity: Our program only has a small number of key words so is generally simple. The user studies validated that for us. 
 
+# Milestone 4<br/>
+## Problems found during user study/ TA meetin
+What is the input command?      
+-Changed to write for clarity, meant to type a string to a text box<br/>
+Keycodes are unfriendly to users.        <br/>
+-Use key names<br/>
+Hold and release can be merged.        <br/>
+-Merged for readability but now it becomes less flexible<br/>
+Hold inside Repeat or vice versa       <br/>
+-Adjusted parser to make this work<br/>
+The use case of this DSL was unclear      <br/>
+-Focus on making it a cheat engine that can grind games automatically, but also with other functionalities<br/>
+<br/>
+## Changes<br/>
+-Input -> Write<br/>
+-Keycode -> Key name<br/>
+-Made hover a separate command<br/>
+-Merged Hold and Release into a block<br/>
+-Changed the way repeat and hold wrap commands<br/>
+<br/>
+Problem with the new lexer/parser:<br/>
+-Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
+<br/>
+<br/>
+## New Lexer<br/>
+lexer grammar firstLexer ;<br/>
+<br/>
+REPEAT_START: ('Repeat' | 'repeat') WS* -> mode(TEXT_MODE);<br/>
+TIMES: 'times' ;<br/>
+LEFT_BRACKET: '{' ;<br/>
+RIGHT_BRACKET: '}' ;<br/>
+WAIT: ('Wait' | 'wait') WS* -> mode(TEXT_MODE) ;<br/>
+AT: 'at' WS* -> mode(TEXT_MODE) ;<br/>
+PRESS: ('Press' | 'press') WS* -> mode(TEXT_MODE) ;<br/>
+HOLD_START: ('Hold' | 'hold') WS* -> mode(TEXT_MODE) ;<br/>
+WRITE: ('Write' | 'write') WS -> mode(STRING_MODE) ;<br/>
+HOVER: 'Hover' | 'hover' ;<br/>
+<br/>
+COMMA: ',' WS* -> mode(TEXT_MODE) ;<br/>
+WS : [\r\n\t ]+ -> channel(HIDDEN) ;<br/>
+<br/>
+mode TEXT_MODE ;<br/>
+TEXT: [a-zA-Z0-9]+ -> mode(DEFAULT_MODE) ;<br/>
+<br/>
+mode STRING_MODE ;<br/>
+STRING: ~[\r\n]+ -> mode(DEFAULT_MODE) ;<br/>
+<br/>
+## New Parser<br/>
+parser grammar firstParser;<br/>
+options { tokenVocab = firstLexer; }<br/>
+<br/>
+program : code+ ;<br/>
+code : command | repeat | hold;<br/>
+repeat : REPEAT_START TEXT TIMES LEFT_BRACKET code+ RIGHT_BRACKET ;<br/>
+hold : HOLD_START keys mouse? LEFT_BRACKET code+ RIGHT_BRACKET ;<br/>
+command : waitFor | press | hover | write;<br/>
+waitFor : WAIT TEXT ;<br/>
+press : PRESS keys mouse? ;<br/>
+hover : HOVER mouse ;<br/>
+write: WRITE STRING ;<br/>
+<br/>
+mouse : AT coord ;<br/>
+coord : TEXT COMMA TEXT ;<br/>
+keys : TEXT (COMMA TEXT)* ;<br/>
+
+
+## Status of implementation
+
+The DSL program is functional, however we have yet to find an efficient way to print out characters including special symbols without using copy and paste. Since copy paste doesn't work across operating systems (for example Mac also has control, but uses command + c to copy instead of control), this feature might need to be revised.
+
+Additionally, “Press” currently only reads in keycodes, but we are planning to change it to accept text, so that it is more user friendly. In addition, variables and basic arithmetic on those variables will be added to allow users to make more advanced scripts.
+
+
+## Plans for final user study
+For the first user study, we noticed that the participant was not familiar enough with computational thinking to break down operation steps easily. For the final user study, we are considering narrowing down the pool of potential users/the target audience. The user study will be conducted after we complete a few more user oriented features (to improve usability). We are planning to use the same activities as the first user study.
+
+
+
+## Timeline for the remaining days
+-10/11 Complete implementation of user friendly features
+-10/11 Augment user study to fit updated features
+-10/13 Conduct final user study
+-10/13 Final revisions and tweaks
+-10/15 Create video
