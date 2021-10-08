@@ -227,27 +227,27 @@ Efficiency: The time it takes to do the simple tasks by coding is not ideal sinc
 Simplicity: Our program only has a small number of key words so is generally simple. The user studies validated that for us. 
 
 # Milestone 4<br/>
-## Problems found during user study/ TA meetin
+## Problems found during user study/ TA meeting
 What is the input command?      
--Changed to write for clarity, meant to type a string to a text box<br/>
+- Changed to write for clarity, meant to type a string to a text box<br/>
 Keycodes are unfriendly to users.        <br/>
--Use key names<br/>
+- Use key names<br/>
 Hold and release can be merged.        <br/>
--Merged for readability but now it becomes less flexible<br/>
+- Merged for readability but now it becomes less flexible<br/>
 Hold inside Repeat or vice versa       <br/>
--Adjusted parser to make this work<br/>
+- Adjusted parser to make this work<br/>
 The use case of this DSL was unclear      <br/>
--Focus on making it a cheat engine that can grind games automatically, but also with other functionalities<br/>
+- Focus on making it a cheat engine that can grind games automatically, but also with other functionalities<br/>
 <br/>
 ## Changes<br/>
--Input -> Write<br/>
--Keycode -> Key name<br/>
--Made hover a separate command<br/>
--Merged Hold and Release into a block<br/>
--Changed the way repeat and hold wrap commands<br/>
+- Input -> Write<br/>
+- Keycode -> Key name<br/>
+- Made hover a separate command<br/>
+- Merged Hold and Release into a block<br/>
+- Changed the way repeat and hold wrap commands<br/>
 <br/>
 Problem with the new lexer/parser:<br/>
--Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
+- Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
 <br/>
 <br/>
 ## New Lexer<br/>
@@ -305,8 +305,8 @@ For the first user study, we noticed that the participant was not familiar enoug
 
 
 ## Timeline for the remaining days
--10/11 Complete implementation of user friendly features
--10/11 Augment user study to fit updated features
--10/13 Conduct final user study
--10/13 Final revisions and tweaks
--10/15 Create video
+- 10/11 Complete implementation of user friendly features
+- 10/11 Augment user study to fit updated features
+- 10/13 Conduct final user study
+- 10/13 Final revisions and tweaks
+- 10/15 Create video
