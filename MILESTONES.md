@@ -250,6 +250,7 @@ Problem with the new lexer/parser:<br/>
 - Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
 <br/>
 <br/>
+
 ## New Lexer
 lexer grammar firstLexer ;<br/>
 <br/>
@@ -273,6 +274,7 @@ TEXT: [a-zA-Z0-9]+ -> mode(DEFAULT_MODE) ;<br/>
 mode STRING_MODE ;<br/>
 STRING: ~[\r\n]+ -> mode(DEFAULT_MODE) ;<br/>
 <br/>
+
 ## New Parser
 parser grammar firstParser;<br/>
 options { tokenVocab = firstLexer; }<br/>
