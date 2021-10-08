@@ -228,17 +228,18 @@ Simplicity: Our program only has a small number of key words so is generally sim
 
 # Milestone 4<br/>
 ## Problems found during user study/ TA meeting
-What is the input command?      
-  Changed to write for clarity, meant to type a string to a text box<br/>
-Keycodes are unfriendly to users.        <br/>
-  Use key names<br/>
-Hold and release can be merged.        <br/>
-  Merged for readability but now it becomes less flexible<br/>
-Hold inside Repeat or vice versa       <br/>
-  Adjusted parser to make this work<br/>
-The use case of this DSL was unclear      <br/>
-  Focus on making it a cheat engine that can grind games automatically, but also with other functionalities<br/>
+Q: What is the input command?      
+A: Changed to write for clarity, meant to type a string to a text box<br/>
+Q: Keycodes are unfriendly to users.        <br/>
+A: Use key names<br/>
+Q: Hold and release can be merged.        <br/>
+A: Merged for readability but now it becomes less flexible<br/>
+Q: Hold inside Repeat or vice versa       <br/>
+A: Adjusted parser to make this work<br/>
+Q: The use case of this DSL was unclear      <br/>
+A: Focus on making it a cheat engine that can grind games automatically, but also with other functionalities<br/>
 <br/>
+
 ## Changes
 - Input -> Write<br/>
 - Keycode -> Key name<br/>
@@ -246,8 +247,7 @@ The use case of this DSL was unclear      <br/>
 - Merged Hold and Release into a block<br/>
 - Changed the way repeat and hold wrap commands<br/>
 <br/>
-Problem with the new lexer/parser:<br/>
-- Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
+Problem with the new lexer/parser: Every number input field has to be TEXT or else antlr always recognize the TEXT after commas as a NUM. Need to convert to int.<br/>
 <br/>
 <br/>
 
