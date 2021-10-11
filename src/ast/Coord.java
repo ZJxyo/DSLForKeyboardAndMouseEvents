@@ -1,12 +1,14 @@
 package ast;
 
-public class Coord extends Node {
-    private Integer xCoord;
-    private Integer yCoord;
+import ast.variables.Exp;
 
-    public Coord(String xCoord, String yCoord) {
-        this.xCoord = Integer.parseInt(xCoord);
-        this.yCoord = Integer.parseInt(yCoord);
+public class Coord extends Node {
+    private Exp xCoord;
+    private Exp yCoord;
+
+    public Coord(Exp xCoord, Exp yCoord) {
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
     }
 
     @Override
@@ -14,19 +16,19 @@ public class Coord extends Node {
         return v.visit(this);
     }
 
-    public Integer getxCoord() {
+    public Exp getxCoord() {
         return xCoord;
     }
 
-    public void setxCoord(Integer xCoord) {
+    public void setxCoord(Exp xCoord) {
         this.xCoord = xCoord;
     }
 
-    public Integer getyCoord() {
+    public Exp getyCoord() {
         return yCoord;
     }
 
-    public void setyCoord(Integer yCoord) {
+    public void setyCoord(Exp yCoord) {
         this.yCoord = yCoord;
     }
 }
