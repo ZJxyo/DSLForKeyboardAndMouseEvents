@@ -10,10 +10,13 @@ import ast.variables.VarPrint;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements firstParserVisitor<Node>  {
     List<Code> loc;
+
 
     @Override
     public Program visitProgram(firstParser.ProgramContext ctx) {
@@ -140,9 +143,10 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
 
     @Override
     public Keys visitKeys(firstParser.KeysContext ctx) {
-        List<Integer> keys = new ArrayList<>();
+        List<List<Integer>> keys = new ArrayList<>();
+
         for (TerminalNode k : ctx.TEXT()) {
-            keys.add(Integer.parseInt(k.getText()));
+            keys.add(Keys.keyMap.get(k.getText()));
         }
         return new Keys(keys);
     }

@@ -1,4 +1,7 @@
 package ast;
+import javafx.scene.input.KeyCode;
+import parser.ParseTreeToAST;
+
 import ast.variables.Number;
 import ast.variables.VarAssignment;
 import ast.variables.VarDeclaration;
@@ -9,6 +12,7 @@ import ast.variables.VarPrint;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.security.Key;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -16,6 +20,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.awt.event.InputEvent;
+
+import static java.awt.event.KeyEvent.VK_ALT;
 import java.util.Locale;
 import java.util.Map;
 
@@ -51,16 +57,24 @@ public class firstEvaluator implements firstVisitor<Object> {
 
         if (p.isState()) {
             // press down
-            for (Integer keyCode: visit(p.getKeys())) {
-                if (mouseKeyCodes.contains(keyCode)) {
-                    // mouse actions
-                    robot.mousePress(keyCode);
-                } else {
-                    // keyboard actions
+            for (List<Integer> keyCode: visit(p.getKeys())) {
+                // control means keycode is length 2 (ctrl v, c, etc)
+                if (keyCode.size() > 1) {
                     try {
-                        robot.keyPress(keyCode);
+                        robot.keyPress(keyCode.get(0));
+                        robot.keyPress(keyCode.get(1));
                     } catch (Exception e) {
                         System.out.println("Bad keycode");
+                    }
+                } else {
+                    if (mouseKeyCodes.contains(keyCode.get(0))) {
+                        robot.mousePress(keyCode.get(0));
+                    } else {
+                        try {
+                            robot.keyPress(keyCode.get(0));
+                        } catch (Exception e) {
+                            System.out.println("Bad keycode");
+                        }
                     }
                 }
             }
@@ -72,16 +86,23 @@ public class firstEvaluator implements firstVisitor<Object> {
             }
         } else {
             // release
-            for (Integer keyCode: visit(p.getKeys())) {
-                if (mouseKeyCodes.contains(keyCode)) {
-                    // mouse actions
-                    robot.mouseRelease(keyCode);
-                } else {
-                    // keyboard actions
+            for (List<Integer> keyCode: visit(p.getKeys())) {
+                if (keyCode.size() > 1) {
                     try {
-                        robot.keyRelease(keyCode);
+                        robot.keyRelease(keyCode.get(0));
+                        robot.keyRelease(keyCode.get(1));
                     } catch (Exception e) {
                         System.out.println("Bad keycode");
+                    }
+                } else {
+                    if (mouseKeyCodes.contains(keyCode.get(0))) {
+                        robot.mouseRelease(keyCode.get(0));
+                    } else {
+                        try {
+                            robot.keyRelease(keyCode.get(0));
+                        } catch (Exception e) {
+                            System.out.println("Bad keycode");
+                        }
                     }
                 }
             }
@@ -94,7 +115,6 @@ public class firstEvaluator implements firstVisitor<Object> {
     @Override
     // assume p is the input time in integer format
     public Object visit(Wait p) {
-        System.out.println("waiting");
         try {
             robot.delay(p.getTime());
         } catch (IllegalArgumentException e) {
@@ -105,33 +125,44 @@ public class firstEvaluator implements firstVisitor<Object> {
     }
 
     @Override
-    public List<Integer> visit(Keys p) {
+    public List<List<Integer>> visit(Keys p) {
         return p.getKeys();
     }
 
     @Override
-    // assume p is a list of integer keycodes
+    // assume p is a list of list of integer keycodes
     public Object visit(Press p) {
         // dummy keycodes for mouse action
         List<Integer> mouseKeyCodes = Arrays.asList(InputEvent.BUTTON1_DOWN_MASK, InputEvent.BUTTON2_DOWN_MASK, InputEvent.BUTTON3_DOWN_MASK);
-        for (Integer keyCode: visit(p.getKeys())) {
+        for (List<Integer> keyCode: visit(p.getKeys())) {
             if (p.getMouse() != null) {
                 Integer xCoord = (Integer)p.getMouse().getCoord().getxCoord().accept(this);
                 Integer yCoord = (Integer)p.getMouse().getCoord().getyCoord().accept(this);
                 robot.mouseMove(xCoord, yCoord);
             }
 
-            if (mouseKeyCodes.contains(keyCode)) {
-                // mouse actions
-                robot.mousePress(keyCode);
-                robot.mouseRelease(keyCode);
-            } else {
-                // keyboard actions
+            if (keyCode.size() > 1) {
                 try {
-                    robot.keyPress(keyCode);
-                    robot.keyRelease(keyCode);
+                    robot.keyPress(keyCode.get(0));
+                    robot.keyPress(keyCode.get(1));
+                    robot.keyRelease(keyCode.get(1));
+                    robot.keyRelease(keyCode.get(0));
                 } catch (Exception e) {
                     System.out.println("Bad keycode");
+                }
+            } else {
+                if (mouseKeyCodes.contains(keyCode.get(0))) {
+                    // mouse actions
+                    robot.mousePress(keyCode.get(0));
+                    robot.mouseRelease(keyCode.get(0));
+                } else {
+                    // keyboard actions
+                    try {
+                        robot.keyPress(keyCode.get(0));
+                        robot.keyRelease(keyCode.get(0));
+                    } catch (Exception e) {
+                        System.out.println("Bad keycode");
+                    }
                 }
             }
         }
@@ -151,17 +182,40 @@ public class firstEvaluator implements firstVisitor<Object> {
     @Override
     public Object visit(Write p) {
         // https://stackoverflow.com/questions/29665534/type-a-string-using-java-awt-robot
-        String text = p.getInputString();
-        StringSelection stringSelection = new StringSelection(text);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, stringSelection);
 
-        robot.keyPress(17);
-        robot.keyPress(86);
-        robot.keyRelease(86);
-        robot.keyRelease(17);
+        String text = p.getInputString();
+        for (char c : text.toCharArray()) {
+            String charString = String.valueOf(c);
+            List<Integer> keyCodes;
+            if (Keys.keyMap.containsKey(charString)) {
+                keyCodes = Keys.keyMap.get(charString);
+            } else {
+                throw new RuntimeException(
+                        "Key code not found for character '" + c + "'");
+            }
+            System.out.println(charString);
+            if (keyCodes.size() > 1) {
+                System.out.println(keyCodes.get(0));
+                System.out.println(keyCodes.get(1));
+                robot.keyPress(keyCodes.get(0));
+                robot.keyPress(keyCodes.get(1));
+                robot.delay(50);
+                robot.keyRelease(keyCodes.get(1));
+                robot.keyRelease(keyCodes.get(0));
+                robot.delay(50);
+            } else {
+                System.out.println(keyCodes.get(0));
+                robot.keyPress(keyCodes.get(0));
+                robot.delay(50);
+                robot.keyRelease(keyCodes.get(0));
+                robot.delay(50);
+            }
+        }
+
 
         return null;
+
+
     }
 
     @Override
