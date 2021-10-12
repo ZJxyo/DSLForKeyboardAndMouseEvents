@@ -1,0 +1,8 @@
+new x
+set x = 50
+Repeat 100 times {
+wait 100
++ x, 50
+hover at x, 100
+}
+print x

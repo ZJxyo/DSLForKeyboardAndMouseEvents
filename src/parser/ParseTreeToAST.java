@@ -1,5 +1,12 @@
 package parser;
 import ast.*;
+import ast.variables.Exp;
+import ast.variables.Number;
+import ast.variables.VarAssignment;
+import ast.variables.VarDeclaration;
+import ast.variables.VarName;
+import ast.variables.VarOperation;
+import ast.variables.VarPrint;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.ArrayList;
@@ -25,7 +32,10 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             return visitHold(ctx.hold());
         } else if (ctx.repeat() != null) {
             return visitRepeat(ctx.repeat());
-        } else {
+        } else if (ctx.var() != null) {
+            return visitVar(ctx.var());
+        }
+        else {
             throw new RuntimeException("Code parse tree with invalid context information");
         }
     }
@@ -125,7 +135,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
 
     @Override
     public Coord visitCoord(firstParser.CoordContext ctx) {
-        return new Coord(ctx.TEXT().get(0).getText(), ctx.TEXT().get(1).getText());
+        return new Coord(visitExp(ctx.exp().get(0)), visitExp(ctx.exp().get(1)));
     }
 
     @Override
@@ -135,5 +145,57 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             keys.add(Integer.parseInt(k.getText()));
         }
         return new Keys(keys);
+    }
+
+    @Override
+    public Code visitVar(firstParser.VarContext ctx) {
+        if (ctx.declare() != null) {
+            return visitDeclare(ctx.declare());
+        } else if (ctx.assign() != null) {
+            return visitAssign(ctx.assign());
+        } else if (ctx.operation() != null) {
+            return visitOperation(ctx.operation());
+        }
+        else if (ctx.print() != null) {
+            return visitPrint(ctx.print());
+        }
+        return null;
+    }
+
+    @Override
+    public VarDeclaration visitDeclare(firstParser.DeclareContext ctx) {
+        return new VarDeclaration(ctx.NAME().getText());
+    }
+
+    @Override
+    public VarAssignment visitAssign(firstParser.AssignContext ctx) {
+        return new VarAssignment(ctx.NAME().getText(), visitExp(ctx.exp()));
+    }
+
+    @Override
+    public VarOperation visitOperation(firstParser.OperationContext ctx) {
+        return new VarOperation(ctx.OPERATION().getText(),
+                                ctx.NAME().getText(), visitExp(ctx.exp()));
+    }
+
+    @Override
+    public VarPrint visitPrint(firstParser.PrintContext ctx) {
+        return new VarPrint(visitExp(ctx.exp()));
+    }
+
+    @Override
+    public Exp visitExp(firstParser.ExpContext ctx) {
+        if (ctx.usage() != null) {
+            return visitUsage(ctx.usage());
+        } else if (ctx.CONST() != null) {
+            return new Number(Integer.parseInt(ctx.CONST().getText()));
+        } else {
+            throw new RuntimeException("Bad Expression");
+        }
+    }
+
+    @Override
+    public VarName visitUsage(firstParser.UsageContext ctx) {
+        return new VarName(ctx.NAME().getText());
     }
 }

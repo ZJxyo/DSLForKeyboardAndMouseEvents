@@ -1,4 +1,4 @@
-// Generated from C:/Users/User/Desktop/CPSC410/410project/src/parser\firstParser.g4 by ANTLR 4.9.1
+// Generated from /Users/avinash/Desktop/CPSC410/Project1Group17/src/parser/firstParser.g4 by ANTLR 4.9.1
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -127,4 +127,74 @@ public interface firstParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitKeys(firstParser.KeysContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#var}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar(firstParser.VarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#var}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar(firstParser.VarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#declare}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclare(firstParser.DeclareContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#declare}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclare(firstParser.DeclareContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#assign}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssign(firstParser.AssignContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#assign}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssign(firstParser.AssignContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperation(firstParser.OperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#operation}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperation(firstParser.OperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint(firstParser.PrintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint(firstParser.PrintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExp(firstParser.ExpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExp(firstParser.ExpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link firstParser#usage}.
+	 * @param ctx the parse tree
+	 */
+	void enterUsage(firstParser.UsageContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link firstParser#usage}.
+	 * @param ctx the parse tree
+	 */
+	void exitUsage(firstParser.UsageContext ctx);
 }

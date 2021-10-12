@@ -1,4 +1,4 @@
-// Generated from C:/Users/User/Desktop/CPSC410/410project/src/parser\firstParser.g4 by ANTLR 4.9.1
+// Generated from /Users/avinash/Desktop/CPSC410/Project1Group17/src/parser/firstParser.g4 by ANTLR 4.9.1
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -82,4 +82,46 @@ public interface firstParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitKeys(firstParser.KeysContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#var}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar(firstParser.VarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#declare}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclare(firstParser.DeclareContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#assign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssign(firstParser.AssignContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#operation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperation(firstParser.OperationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrint(firstParser.PrintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExp(firstParser.ExpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link firstParser#usage}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUsage(firstParser.UsageContext ctx);
 }
