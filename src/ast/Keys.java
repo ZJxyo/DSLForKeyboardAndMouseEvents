@@ -128,6 +128,7 @@ public class Keys extends Node{
         put("F12", new ArrayList<>(Arrays.asList(123)));
 
         // command Keys (shift, tab, etc)
+        put("alt", new ArrayList<>(Arrays.asList(KeyEvent.VK_ALT)));
         put("esc", new ArrayList<>(Arrays.asList(27)));
         put("backspace", new ArrayList<>(Arrays.asList(8)));
         put("tab", new ArrayList<>(Arrays.asList(9)));
