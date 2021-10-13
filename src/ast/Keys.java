@@ -1,5 +1,6 @@
 package ast;
 
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 import java.util.*;
@@ -143,6 +144,10 @@ public class Keys extends Node{
         put("ArrowLeft", new ArrayList<>(Arrays.asList(37)));
         put("ArrowRight", new ArrayList<>(Arrays.asList(39)));
         put(" ", new ArrayList<>(Arrays.asList(32)));
+        put("windows", new ArrayList<>(Arrays.asList(KeyEvent.VK_WINDOWS)));
+        put("left", new ArrayList<>(Arrays.asList(InputEvent.BUTTON1_DOWN_MASK)));
+        put("middle", new ArrayList<>(Arrays.asList(InputEvent.BUTTON2_DOWN_MASK)));
+        put("right", new ArrayList<>(Arrays.asList(InputEvent.BUTTON3_DOWN_MASK)));
     }};
 
     public Keys(List<List<Integer>> keys) {

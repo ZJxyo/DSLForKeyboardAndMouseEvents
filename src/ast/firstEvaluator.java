@@ -240,14 +240,26 @@ public class firstEvaluator implements firstVisitor<Object> {
         System.out.println("testing assignment");
         Integer assignValue = (Integer)assignment.getExpression().accept(this);
         // TODO: error if not declared
-        symbolTable.put(assignment.getName(), assignValue);
+        if (symbolTable.containsKey(assignment.getName())) {
+            symbolTable.put(assignment.getName(), assignValue);
+        } else {
+            System.out.print("No variable " + assignment.getName());
+            System.exit(1);
+        }
         return null;
     }
 
     @Override
     public Object visit(VarOperation operation) {
         // TODO: throw error if number doesnt exist in map
-        int val = symbolTable.getOrDefault(operation.getName(), 0);
+        int val = 0;
+        if (symbolTable.containsKey(operation.getName())) {
+            val = symbolTable.get(operation.getName());
+        } else {
+            System.out.print("No variable " + operation.getName());
+            System.exit(1);
+        }
+
         Integer evaluatedExpression = (Integer)operation.getExpression().accept(this);
         int ret = 0;
         if (operation.getOperation() == VarOperation.Operation.ADD) {
@@ -263,8 +275,13 @@ public class firstEvaluator implements firstVisitor<Object> {
 
     @Override
     public Integer visit(VarName name) {
-        // TODO: throw runtime error if not in map
-        return symbolTable.getOrDefault(name.getName(), -500);
+        if (symbolTable.containsKey(name.getName())) {
+            return symbolTable.get(name.getName());
+        } else {
+            System.out.print("No variable " + name.getName());
+            System.exit(1);
+            return 1;
+        }
     }
 
     @Override
