@@ -37,6 +37,7 @@ public class firstEvaluator implements firstVisitor<Object> {
     @Override
     public Object visit(Program p) {
         for (Code s : p.getCodes()) {
+            robot.delay(500);
             s.accept(this);
         }
         return null;
@@ -193,29 +194,18 @@ public class firstEvaluator implements firstVisitor<Object> {
                 throw new RuntimeException(
                         "Key code not found for character '" + c + "'");
             }
-            System.out.println(charString);
             if (keyCodes.size() > 1) {
-                System.out.println(keyCodes.get(0));
-                System.out.println(keyCodes.get(1));
                 robot.keyPress(keyCodes.get(0));
                 robot.keyPress(keyCodes.get(1));
-                robot.delay(50);
                 robot.keyRelease(keyCodes.get(1));
                 robot.keyRelease(keyCodes.get(0));
-                robot.delay(50);
             } else {
-                System.out.println(keyCodes.get(0));
                 robot.keyPress(keyCodes.get(0));
-                robot.delay(50);
                 robot.keyRelease(keyCodes.get(0));
-                robot.delay(50);
             }
         }
 
-
         return null;
-
-
     }
 
     @Override
@@ -291,7 +281,7 @@ public class firstEvaluator implements firstVisitor<Object> {
 
     @Override
     public Object visit(VarPrint print) {
-        System.out.println("PRINTING" + print.getPrint().accept(this));
+        System.out.println("PRINTING " + print.getPrint().accept(this));
         return null;
     }
 }

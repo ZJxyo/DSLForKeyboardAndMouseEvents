@@ -148,6 +148,8 @@ public class Keys extends Node{
         put("left", new ArrayList<>(Arrays.asList(InputEvent.BUTTON1_DOWN_MASK)));
         put("middle", new ArrayList<>(Arrays.asList(InputEvent.BUTTON2_DOWN_MASK)));
         put("right", new ArrayList<>(Arrays.asList(InputEvent.BUTTON3_DOWN_MASK)));
+        put("delete", new ArrayList<>(Arrays.asList(KeyEvent.VK_DELETE)));
+        put("SpaceBar", new ArrayList<>(Arrays.asList(32)));
     }};
 
     public Keys(List<List<Integer>> keys) {
