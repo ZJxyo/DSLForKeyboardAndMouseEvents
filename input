@@ -1,8 +1,17 @@
-new x
-set x = 50
-Repeat 100 times {
-wait 100
-+ x, 50
-hover at x, 100
+Hold win {
+Press e
 }
-print x
+Wait 500
+Hold alt {
+Press d
+}
+Wait 500
+Write downloads
+Press enter
+Wait 500
+Hold ctrl {
+Press e
+}
+Wait 500
+Write testfile.txt
+Press enter
