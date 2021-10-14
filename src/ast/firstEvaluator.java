@@ -29,15 +29,17 @@ import java.util.Map;
 public class firstEvaluator implements firstVisitor<Object> {
     Robot robot;
     private static final Map<String, Integer> symbolTable = new HashMap<>();
+    final String delay = "delay";
 
     public firstEvaluator(Robot robot) {
         this.robot = robot;
+        symbolTable.put(delay, 300);
     }
 
     @Override
     public Object visit(Program p) {
         for (Code s : p.getCodes()) {
-            robot.delay(500);
+            robot.delay(symbolTable.get(delay));
             s.accept(this);
         }
         return null;
