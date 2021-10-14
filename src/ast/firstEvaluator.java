@@ -39,7 +39,17 @@ public class firstEvaluator implements firstVisitor<Object> {
     @Override
     public Object visit(Program p) {
         for (Code s : p.getCodes()) {
-            robot.delay(symbolTable.get(delay));
+            try {
+                Integer time = symbolTable.get(delay);
+                if (time == null) {
+                    System.out.println("delay cannot be null");
+                    System.exit(1);
+                }
+                robot.delay(symbolTable.get(delay));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid delay");
+                System.exit(1);
+            }
             s.accept(this);
         }
         return null;
@@ -125,8 +135,9 @@ public class firstEvaluator implements firstVisitor<Object> {
                 System.exit(1);
             }
             Thread.sleep(time);
-        } catch (IllegalArgumentException | InterruptedException e) {
-            System.out.println("time out of bounds");
+        } catch (InterruptedException e) {
+            System.out.println("Unexpected interruption");
+            System.exit(1);
         }
 
         return null;
