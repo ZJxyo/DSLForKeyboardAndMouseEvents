@@ -137,14 +137,17 @@ public class Keys extends Node{
         put("enter", new ArrayList<>(Arrays.asList(KeyEvent.VK_ENTER)));
         put("shift", new ArrayList<>(Arrays.asList(16)));
         put("control", new ArrayList<>(Arrays.asList(17)));
+        put("ctrl", new ArrayList<>(Arrays.asList(17)));
         put("option", new ArrayList<>(Arrays.asList(18)));
         put("command", new ArrayList<>(Arrays.asList(KeyEvent.VK_META)));
+        put("cmd", new ArrayList<>(Arrays.asList(KeyEvent.VK_META)));
         put("ArrowUp", new ArrayList<>(Arrays.asList(38)));
         put("ArrowDown", new ArrayList<>(Arrays.asList(40)));
         put("ArrowLeft", new ArrayList<>(Arrays.asList(37)));
         put("ArrowRight", new ArrayList<>(Arrays.asList(39)));
         put(" ", new ArrayList<>(Arrays.asList(32)));
         put("windows", new ArrayList<>(Arrays.asList(KeyEvent.VK_WINDOWS)));
+        put("win", new ArrayList<>(Arrays.asList(KeyEvent.VK_WINDOWS)));
         put("left", new ArrayList<>(Arrays.asList(InputEvent.BUTTON1_DOWN_MASK)));
         put("middle", new ArrayList<>(Arrays.asList(InputEvent.BUTTON2_DOWN_MASK)));
         put("right", new ArrayList<>(Arrays.asList(InputEvent.BUTTON3_DOWN_MASK)));
