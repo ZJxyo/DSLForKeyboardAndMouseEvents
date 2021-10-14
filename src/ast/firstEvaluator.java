@@ -117,8 +117,13 @@ public class firstEvaluator implements firstVisitor<Object> {
     // assume p is the input time in integer format
     public Object visit(Wait p) {
         try {
-            robot.delay(p.getTime());
-        } catch (IllegalArgumentException e) {
+            Integer time = (Integer)p.getExpression().accept(this);
+            if (time == null) {
+                System.out.println("Variable not assigned");
+                System.exit(1);
+            }
+            Thread.sleep(time);
+        } catch (IllegalArgumentException | InterruptedException e) {
             System.out.println("time out of bounds");
         }
 

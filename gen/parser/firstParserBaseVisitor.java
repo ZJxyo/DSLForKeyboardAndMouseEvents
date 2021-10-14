@@ -1,4 +1,4 @@
-// Generated from /Users/avinash/Desktop/CPSC410/Project1Group17/src/parser/firstParser.g4 by ANTLR 4.9.1
+// Generated from D:/Projects/CPSC410/Project1Group17/src/parser\firstParser.g4 by ANTLR 4.9.1
 package parser;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

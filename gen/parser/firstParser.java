@@ -1,4 +1,4 @@
-// Generated from /Users/avinash/Desktop/CPSC410/Project1Group17/src/parser/firstParser.g4 by ANTLR 4.9.1
+// Generated from D:/Projects/CPSC410/Project1Group17/src/parser\firstParser.g4 by ANTLR 4.9.1
 package parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -496,7 +496,10 @@ public class firstParser extends Parser {
 
 	public static class WaitForContext extends ParserRuleContext {
 		public TerminalNode WAIT() { return getToken(firstParser.WAIT, 0); }
-		public TerminalNode TEXT() { return getToken(firstParser.TEXT, 0); }
+		public ExpContext exp() {
+			return getRuleContext(ExpContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(firstParser.NEWLINE, 0); }
 		public WaitForContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -525,7 +528,9 @@ public class firstParser extends Parser {
 			setState(79);
 			match(WAIT);
 			setState(80);
-			match(TEXT);
+			exp();
+			setState(81);
+			match(NEWLINE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -573,16 +578,16 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
-			match(PRESS);
 			setState(83);
+			match(PRESS);
+			setState(84);
 			keys();
-			setState(85);
+			setState(86);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==AT) {
 				{
-				setState(84);
+				setState(85);
 				mouse();
 				}
 			}
@@ -630,9 +635,9 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(87);
-			match(HOVER);
 			setState(88);
+			match(HOVER);
+			setState(89);
 			mouse();
 			}
 		}
@@ -675,9 +680,9 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(90);
-			match(WRITE);
 			setState(91);
+			match(WRITE);
+			setState(92);
 			match(STRING);
 			}
 		}
@@ -722,9 +727,9 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93);
-			match(AT);
 			setState(94);
+			match(AT);
+			setState(95);
 			coord();
 			}
 		}
@@ -773,13 +778,13 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(96);
-			exp();
 			setState(97);
-			match(EXP_COMMA);
-			setState(98);
 			exp();
+			setState(98);
+			match(EXP_COMMA);
 			setState(99);
+			exp();
+			setState(100);
 			match(NEWLINE);
 			}
 		}
@@ -829,21 +834,21 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
+			setState(102);
 			match(TEXT);
-			setState(106);
+			setState(107);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(102);
-				match(COMMA);
 				setState(103);
+				match(COMMA);
+				setState(104);
 				match(TEXT);
 				}
 				}
-				setState(108);
+				setState(109);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -899,37 +904,37 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113);
+			setState(114);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NEW:
 				{
-				setState(109);
+				setState(110);
 				declare();
 				}
 				break;
 			case SET:
 				{
-				setState(110);
+				setState(111);
 				assign();
 				}
 				break;
 			case OPERATION:
 				{
-				setState(111);
+				setState(112);
 				operation();
 				}
 				break;
 			case PRINT:
 				{
-				setState(112);
+				setState(113);
 				print();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(115);
+			setState(116);
 			match(NEWLINE);
 			}
 		}
@@ -972,9 +977,9 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
-			match(NEW);
 			setState(118);
+			match(NEW);
+			setState(119);
 			match(NAME);
 			}
 		}
@@ -1021,13 +1026,13 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(120);
-			match(SET);
 			setState(121);
-			match(NAME);
+			match(SET);
 			setState(122);
-			match(EXP_SEP);
+			match(NAME);
 			setState(123);
+			match(EXP_SEP);
+			setState(124);
 			exp();
 			}
 		}
@@ -1074,13 +1079,13 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
-			match(OPERATION);
 			setState(126);
-			match(NAME);
+			match(OPERATION);
 			setState(127);
-			match(EXP_COMMA);
+			match(NAME);
 			setState(128);
+			match(EXP_COMMA);
+			setState(129);
 			exp();
 			}
 		}
@@ -1125,9 +1130,9 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130);
-			match(PRINT);
 			setState(131);
+			match(PRINT);
+			setState(132);
 			exp();
 			}
 		}
@@ -1170,20 +1175,20 @@ public class firstParser extends Parser {
 		ExpContext _localctx = new ExpContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_exp);
 		try {
-			setState(135);
+			setState(136);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NAME:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(133);
+				setState(134);
 				usage();
 				}
 				break;
 			case CONST:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(134);
+				setState(135);
 				match(CONST);
 				}
 				break;
@@ -1229,7 +1234,7 @@ public class firstParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(137);
+			setState(138);
 			match(NAME);
 			}
 		}
@@ -1245,41 +1250,42 @@ public class firstParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008e\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008f\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\3\2\6\2*\n\2\r\2\16\2+\3\3\3\3\3\3\3\3\5\3\62\n\3"+
 		"\3\4\3\4\3\4\3\4\3\4\6\49\n\4\r\4\16\4:\3\4\3\4\3\5\3\5\3\5\5\5B\n\5\3"+
 		"\5\3\5\6\5F\n\5\r\5\16\5G\3\5\3\5\3\6\3\6\3\6\3\6\5\6P\n\6\3\7\3\7\3\7"+
-		"\3\b\3\b\3\b\5\bX\n\b\3\t\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3"+
-		"\f\3\f\3\f\3\r\3\r\3\r\7\rk\n\r\f\r\16\rn\13\r\3\16\3\16\3\16\3\16\5\16"+
-		"t\n\16\3\16\3\16\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21"+
-		"\3\21\3\21\3\22\3\22\3\22\3\23\3\23\5\23\u008a\n\23\3\24\3\24\3\24\2\2"+
-		"\25\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\2\2\u008a\2)\3\2\2\2"+
-		"\4\61\3\2\2\2\6\63\3\2\2\2\b>\3\2\2\2\nO\3\2\2\2\fQ\3\2\2\2\16T\3\2\2"+
-		"\2\20Y\3\2\2\2\22\\\3\2\2\2\24_\3\2\2\2\26b\3\2\2\2\30g\3\2\2\2\32s\3"+
-		"\2\2\2\34w\3\2\2\2\36z\3\2\2\2 \177\3\2\2\2\"\u0084\3\2\2\2$\u0089\3\2"+
-		"\2\2&\u008b\3\2\2\2(*\5\4\3\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2+,\3\2\2\2"+
-		",\3\3\2\2\2-\62\5\n\6\2.\62\5\6\4\2/\62\5\b\5\2\60\62\5\32\16\2\61-\3"+
-		"\2\2\2\61.\3\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\3\2"+
-		"\2\64\65\7\23\2\2\65\66\7\4\2\2\668\7\5\2\2\679\5\4\3\28\67\3\2\2\29:"+
-		"\3\2\2\2:8\3\2\2\2:;\3\2\2\2;<\3\2\2\2<=\7\6\2\2=\7\3\2\2\2>?\7\n\2\2"+
-		"?A\5\30\r\2@B\5\24\13\2A@\3\2\2\2AB\3\2\2\2BC\3\2\2\2CE\7\5\2\2DF\5\4"+
-		"\3\2ED\3\2\2\2FG\3\2\2\2GE\3\2\2\2GH\3\2\2\2HI\3\2\2\2IJ\7\6\2\2J\t\3"+
-		"\2\2\2KP\5\f\7\2LP\5\16\b\2MP\5\20\t\2NP\5\22\n\2OK\3\2\2\2OL\3\2\2\2"+
-		"OM\3\2\2\2ON\3\2\2\2P\13\3\2\2\2QR\7\7\2\2RS\7\23\2\2S\r\3\2\2\2TU\7\t"+
-		"\2\2UW\5\30\r\2VX\5\24\13\2WV\3\2\2\2WX\3\2\2\2X\17\3\2\2\2YZ\7\f\2\2"+
-		"Z[\5\24\13\2[\21\3\2\2\2\\]\7\13\2\2]^\7\24\2\2^\23\3\2\2\2_`\7\b\2\2"+
-		"`a\5\26\f\2a\25\3\2\2\2bc\5$\23\2cd\7\30\2\2de\5$\23\2ef\7\33\2\2f\27"+
-		"\3\2\2\2gl\7\23\2\2hi\7\21\2\2ik\7\23\2\2jh\3\2\2\2kn\3\2\2\2lj\3\2\2"+
-		"\2lm\3\2\2\2m\31\3\2\2\2nl\3\2\2\2ot\5\34\17\2pt\5\36\20\2qt\5 \21\2r"+
-		"t\5\"\22\2so\3\2\2\2sp\3\2\2\2sq\3\2\2\2sr\3\2\2\2tu\3\2\2\2uv\7\33\2"+
-		"\2v\33\3\2\2\2wx\7\r\2\2xy\7\25\2\2y\35\3\2\2\2z{\7\16\2\2{|\7\25\2\2"+
-		"|}\7\27\2\2}~\5$\23\2~\37\3\2\2\2\177\u0080\7\20\2\2\u0080\u0081\7\25"+
-		"\2\2\u0081\u0082\7\30\2\2\u0082\u0083\5$\23\2\u0083!\3\2\2\2\u0084\u0085"+
-		"\7\17\2\2\u0085\u0086\5$\23\2\u0086#\3\2\2\2\u0087\u008a\5&\24\2\u0088"+
-		"\u008a\7\26\2\2\u0089\u0087\3\2\2\2\u0089\u0088\3\2\2\2\u008a%\3\2\2\2"+
-		"\u008b\u008c\7\25\2\2\u008c\'\3\2\2\2\f+\61:AGOWls\u0089";
+		"\3\7\3\b\3\b\3\b\5\bY\n\b\3\t\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\13\3\f\3"+
+		"\f\3\f\3\f\3\f\3\r\3\r\3\r\7\rl\n\r\f\r\16\ro\13\r\3\16\3\16\3\16\3\16"+
+		"\5\16u\n\16\3\16\3\16\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21"+
+		"\3\21\3\21\3\21\3\22\3\22\3\22\3\23\3\23\5\23\u008b\n\23\3\24\3\24\3\24"+
+		"\2\2\25\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\2\2\u008b\2)\3\2"+
+		"\2\2\4\61\3\2\2\2\6\63\3\2\2\2\b>\3\2\2\2\nO\3\2\2\2\fQ\3\2\2\2\16U\3"+
+		"\2\2\2\20Z\3\2\2\2\22]\3\2\2\2\24`\3\2\2\2\26c\3\2\2\2\30h\3\2\2\2\32"+
+		"t\3\2\2\2\34x\3\2\2\2\36{\3\2\2\2 \u0080\3\2\2\2\"\u0085\3\2\2\2$\u008a"+
+		"\3\2\2\2&\u008c\3\2\2\2(*\5\4\3\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2+,\3\2"+
+		"\2\2,\3\3\2\2\2-\62\5\n\6\2.\62\5\6\4\2/\62\5\b\5\2\60\62\5\32\16\2\61"+
+		"-\3\2\2\2\61.\3\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\3"+
+		"\2\2\64\65\7\23\2\2\65\66\7\4\2\2\668\7\5\2\2\679\5\4\3\28\67\3\2\2\2"+
+		"9:\3\2\2\2:8\3\2\2\2:;\3\2\2\2;<\3\2\2\2<=\7\6\2\2=\7\3\2\2\2>?\7\n\2"+
+		"\2?A\5\30\r\2@B\5\24\13\2A@\3\2\2\2AB\3\2\2\2BC\3\2\2\2CE\7\5\2\2DF\5"+
+		"\4\3\2ED\3\2\2\2FG\3\2\2\2GE\3\2\2\2GH\3\2\2\2HI\3\2\2\2IJ\7\6\2\2J\t"+
+		"\3\2\2\2KP\5\f\7\2LP\5\16\b\2MP\5\20\t\2NP\5\22\n\2OK\3\2\2\2OL\3\2\2"+
+		"\2OM\3\2\2\2ON\3\2\2\2P\13\3\2\2\2QR\7\7\2\2RS\5$\23\2ST\7\33\2\2T\r\3"+
+		"\2\2\2UV\7\t\2\2VX\5\30\r\2WY\5\24\13\2XW\3\2\2\2XY\3\2\2\2Y\17\3\2\2"+
+		"\2Z[\7\f\2\2[\\\5\24\13\2\\\21\3\2\2\2]^\7\13\2\2^_\7\24\2\2_\23\3\2\2"+
+		"\2`a\7\b\2\2ab\5\26\f\2b\25\3\2\2\2cd\5$\23\2de\7\30\2\2ef\5$\23\2fg\7"+
+		"\33\2\2g\27\3\2\2\2hm\7\23\2\2ij\7\21\2\2jl\7\23\2\2ki\3\2\2\2lo\3\2\2"+
+		"\2mk\3\2\2\2mn\3\2\2\2n\31\3\2\2\2om\3\2\2\2pu\5\34\17\2qu\5\36\20\2r"+
+		"u\5 \21\2su\5\"\22\2tp\3\2\2\2tq\3\2\2\2tr\3\2\2\2ts\3\2\2\2uv\3\2\2\2"+
+		"vw\7\33\2\2w\33\3\2\2\2xy\7\r\2\2yz\7\25\2\2z\35\3\2\2\2{|\7\16\2\2|}"+
+		"\7\25\2\2}~\7\27\2\2~\177\5$\23\2\177\37\3\2\2\2\u0080\u0081\7\20\2\2"+
+		"\u0081\u0082\7\25\2\2\u0082\u0083\7\30\2\2\u0083\u0084\5$\23\2\u0084!"+
+		"\3\2\2\2\u0085\u0086\7\17\2\2\u0086\u0087\5$\23\2\u0087#\3\2\2\2\u0088"+
+		"\u008b\5&\24\2\u0089\u008b\7\26\2\2\u008a\u0088\3\2\2\2\u008a\u0089\3"+
+		"\2\2\2\u008b%\3\2\2\2\u008c\u008d\7\25\2\2\u008d\'\3\2\2\2\f+\61:AGOX"+
+		"mt\u008a";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

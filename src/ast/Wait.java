@@ -1,21 +1,19 @@
 package ast;
 
-public class Wait extends Command {
-    private Integer time;
+import ast.variables.Exp;
 
-    public Wait(String time) {
-        this.time = Integer.parseInt(time);
+public class Wait extends Command {
+    private Exp expression;
+
+    public Wait(Exp exp) {
+        this.expression = exp;
     }
     @Override
     public <T> T accept(firstVisitor<T> v) {
         return v.visit(this);
     }
 
-    public Integer getTime() {
-        return time;
-    }
-
-    public void setTime(Integer time) {
-        this.time = time;
+    public Exp getExpression() {
+        return expression;
     }
 }

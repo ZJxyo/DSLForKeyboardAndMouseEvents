@@ -4,7 +4,7 @@ REPEAT_START: ('Repeat' | 'repeat') WS* -> mode(TEXT_MODE);
 TIMES: 'times' ;
 LEFT_BRACKET: '{' ;
 RIGHT_BRACKET: '}' ;
-WAIT: ('Wait' | 'wait') WS* -> mode(TEXT_MODE) ;
+WAIT: ('Wait' | 'wait') WS* -> mode(EXP_MODE) ;
 AT: 'at' WS* -> mode(EXP_MODE) ;
 PRESS: ('Press' | 'press') WS* -> mode(TEXT_MODE) ;
 HOLD_START: ('Hold' | 'hold') WS* -> mode(TEXT_MODE) ;

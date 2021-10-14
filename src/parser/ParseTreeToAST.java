@@ -109,7 +109,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
 
     @Override
     public Wait visitWaitFor(firstParser.WaitForContext ctx) {
-        return new Wait(ctx.TEXT().getText());
+        return new Wait(visitExp(ctx.exp()));
     }
 
     @Override
