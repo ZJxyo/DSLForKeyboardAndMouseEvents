@@ -360,7 +360,6 @@ Names for action keys:<br/>
 alt, esc, backspace, tab, capslock, enter, shift, control, option, command, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, SpaceBar, windows, left, middle, right, delete<br/>
 
 Activity 1:<br/>
-
 Search file name “testfile.txt” in file explorer in the downloads folder, delete the file, then close the window.<br/>
 
 Shortcuts:<br/>
@@ -421,10 +420,10 @@ hover at 200, 130<br/>
 Activity 3:<br/>
 With google chrome open, open a new incognito tab with (ctrl+shift+n), search “r ubc”, then click the first link in the search results (tab, then enter twice), to navigate to the ubc subreddit. Now refresh the webpage 5 times every 5 seconds. Lastly, close the window (ctrl+w).<br/>
 
-Hint: Since the operation is specific to chrome, first navigate to the application manually and bring it into focus by a left click (manual as well).  <br/>
-<br/>
+Hint: <br/>
+Since the operation is specific to chrome, first navigate to the application manually and bring it into focus by a left click (manual as well).  <br/>
+
 Solution:<br/>
-<br/>
 wait 1000<br/>
 hold control, shift {<br/>
 press n<br/>
