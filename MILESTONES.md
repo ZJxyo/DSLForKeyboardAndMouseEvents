@@ -1,15 +1,15 @@
 # Milestone 1
-DSL Description:<br/>
+## DSL Description
 A script for abstracting programmable/automatic mouse clicks and keystrokes/macros. 
 
-Target user:
+## Target user
 - PC users
 - Game cheat
 - Any program requiring constant user activity
 - Software sequence for boot up
 - Password manager 
 
-Feature list:
+## Feature list
 - Selectable coordinates for mouse action
 - Programmable keystrokes
 - Combination of various keyboard/mouse actions
@@ -18,7 +18,7 @@ Feature list:
 - Inserting time intervals between actions
 - Held down key actions
 
-Examples:
+## Examples
 - Clicks the F5 key to refresh every 300 ms<br/>
 Loop 5 times { <br/>
 Click key F5 <br/>
@@ -34,11 +34,11 @@ Combo control, alt, delete <br/>
 Click key tab key alt<br/>
 
 
-TA FeedBack:<br/>
+## TA FeedBack<br/>
 Good idea that can be fleshed out because of the different keystroke and mouse click combinations that can be formed.<br/>
 Current design has sufficient complexity. It is important to define a proper scope for the DSL project.<br/>
 
-Planned Tasks/Features to design:
+## Planned Tasks/Features to design
 - Finalize DSL format/grammar
 - Examine the difficulty of feature implementation
 - Find user study candidates 
@@ -140,6 +140,10 @@ Week 6:
 - Team members shall meet with course staff/TAs based on availability.
 - Team members shall meet at least once a week to discuss and work on the project together.
 
+## TA FeedBack<br/>
+- Need to work faster
+- Complete lexer and parser by the end of the week
+
 # Milestone 3
 
 ## Concrete Langauge Design:
@@ -225,6 +229,12 @@ Possible Sources of Confusion (Design Principles Reflection):
 Efficiency: The time it takes to do the simple tasks by coding is not ideal since it is simpler to do it manually. The examples we gave to the user were examples of things that are better done without programming, and that made the experience a bit frustrating since you are adding much more effort into something that doesn't need it. However for tasks that require a lot of repetition our language is good for, so it does not violate the efficiency design principal.
 
 Simplicity: Our program only has a small number of key words so is generally simple. The user studies validated that for us. 
+
+## TA FeedBack<br/>
+- Implement variables to increase the complexity of our language 
+- Keycodes are not user friendly
+- Group "hold" and "release" into code blocks
+- Start implementation ASAP
 
 # Milestone 4<br/>
 ## Problems found during user study/ TA meeting
@@ -312,6 +322,10 @@ For the first user study, we noticed that the participant was not familiar enoug
 - 10/13 Conduct final user study
 - 10/13 Final revisions and tweaks
 - 10/15 Create video
+
+## TA FeedBack<br/>
+- progress is on track
+- need to start pushing code to git
 
 # Milestone 5
 
@@ -487,8 +501,9 @@ In terms of the principle of expressiveness, the expressiveness of our DSL langu
 ## Planned timeline:
 - Record the video during the weekend.
 
-
-
+## TA FeedBack<br/>
+- Add features if we wish to or if time allows it
+- Focus on completing the milestone 
 
 
 
