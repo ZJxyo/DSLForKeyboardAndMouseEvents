@@ -35,8 +35,8 @@ Click key tab key alt<br/>
 
 
 ## TA FeedBack<br/>
-Good idea that can be fleshed out because of the different keystroke and mouse click combinations that can be formed.<br/>
-Current design has sufficient complexity. It is important to define a proper scope for the DSL project.<br/>
+- Good idea that can be fleshed out because of the different keystroke and mouse click combinations that can be formed.
+- Current design has sufficient complexity. It is important to define a proper scope for the DSL project.
 
 ## Planned Tasks/Features to design
 - Finalize DSL format/grammar
