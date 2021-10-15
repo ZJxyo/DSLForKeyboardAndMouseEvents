@@ -346,8 +346,8 @@ set ac = 20<br/>
 new bc<br/>
 set bc = ac<br/>
 // Perform arithmetics on a variable<br/>
- + ac, 30<br/>
- - ac, bc<br/>
++ ac, 30<br/>
+\- ac, bc<br/>
  - 16, 10<br/>
  * ac, 2<br/>
 // Print the value of a variable to console, in this case (20 + 30 - 20) * 2 = 60<br/>
