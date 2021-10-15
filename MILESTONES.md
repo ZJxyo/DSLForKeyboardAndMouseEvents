@@ -346,10 +346,10 @@ set ac = 20<br/>
 new bc<br/>
 set bc = ac<br/>
 // Perform arithmetics on a variable<br/>
-+ ac, 30<br/>
-- ac, bc<br/>
-- 16, 10<br/>
-* ac, 2<br/>
+ + ac, 30<br/>
+ - ac, bc<br/>
+ - 16, 10<br/>
+ * ac, 2<br/>
 // Print the value of a variable to console, in this case (20 + 30 - 20) * 2 = 60<br/>
 print ac<br/>
 // Variables can be used in screen coordinates, this is equivalent to 60, 300<br/>
@@ -410,10 +410,10 @@ repeat 10 times {<br/>
 set temp = start<br/>
 hover at 200,start<br/>
 hold left {<br/>
-+ temp, 5<br/>
+ + temp, 5<br/>
 hover at 200, temp<br/>
 hover at 200, 130<br/>
-- start, 21<br/>
+ - start, 21<br/>
 }<br/>
 }<br/>
 <br/>
@@ -455,7 +455,7 @@ Activity 1:
 - user referred to the grammar examples couple of times after initial explanation
 - user tried to do the commands manually before actually writing the code to better understand the process of operation
 - the simple commands were easy to understand, so the user was able to do those easily
-<br/>
+
 Activity 2:
 - user was slightly confused about the coordinates due to the row by row nature of this example/activity
 - user had to think about how to perform a click action
@@ -463,7 +463,7 @@ Activity 2:
 - user realized we can hold the mouse key and hover at different coordinates fairly quickly
 - user asked if variable commands be used inside the code blocks of hold/repeat
 - user was able to read the commands he wrote at the end and easily step through them again in detail, to make sure the program was written as intended
-<br/>
+
 Activity 3:
 -  user had questions regarding the usage of indentations\tabs inside code blocks
 - after doing activities 1 and 2, user already had a good grasp of the dsl so this activity was easier
