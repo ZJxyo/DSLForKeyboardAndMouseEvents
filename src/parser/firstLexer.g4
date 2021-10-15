@@ -40,9 +40,7 @@ NAME  : [A-Za-z][A-Za-z0-9]*;
 CONST : [0-9]+;
 EXP_SEP : '=' ;
 EXP_COMMA: ',' ;
-SEMICOLON : ';';
 // spaces and tabs can be ignored (apart from those immediately following a keyword above):
 SPACE : [ \t]+ -> channel(HIDDEN);
 // newline(s) indicate end of a statement and start of the next
 NEWLINE : [\r\n]+ -> mode(DEFAULT_MODE); // some number of these.. longest match means we won't go back to EXP_MODE "too early"
-

@@ -72,23 +72,28 @@ public class firstEvaluator implements firstVisitor<Object> {
             // press down
             for (List<Integer> keyCode: visit(p.getKeys())) {
                 // control means keycode is length 2 (ctrl v, c, etc)
-                if (keyCode.size() > 1) {
-                    try {
-                        robot.keyPress(keyCode.get(0));
-                        robot.keyPress(keyCode.get(1));
-                    } catch (Exception e) {
-                        System.out.println("Bad keycode");
-                    }
-                } else {
-                    if (mouseKeyCodes.contains(keyCode.get(0))) {
-                        robot.mousePress(keyCode.get(0));
-                    } else {
+                if (keyCode != null) {
+                    if (keyCode.size() > 1) {
                         try {
                             robot.keyPress(keyCode.get(0));
+                            robot.keyPress(keyCode.get(1));
                         } catch (Exception e) {
                             System.out.println("Bad keycode");
                         }
+                    } else {
+                        if (mouseKeyCodes.contains(keyCode.get(0))) {
+                            robot.mousePress(keyCode.get(0));
+                        } else {
+                            try {
+                                robot.keyPress(keyCode.get(0));
+                            } catch (Exception e) {
+                                System.out.println("Bad keycode");
+                            }
+                        }
                     }
+                } else {
+                    System.out.println("Bad keycode");
+                    System.exit(1);
                 }
             }
 
@@ -100,23 +105,28 @@ public class firstEvaluator implements firstVisitor<Object> {
         } else {
             // release
             for (List<Integer> keyCode: visit(p.getKeys())) {
-                if (keyCode.size() > 1) {
-                    try {
-                        robot.keyRelease(keyCode.get(0));
-                        robot.keyRelease(keyCode.get(1));
-                    } catch (Exception e) {
-                        System.out.println("Bad keycode");
-                    }
-                } else {
-                    if (mouseKeyCodes.contains(keyCode.get(0))) {
-                        robot.mouseRelease(keyCode.get(0));
-                    } else {
+                if (keyCode != null) {
+                    if (keyCode.size() > 1) {
                         try {
                             robot.keyRelease(keyCode.get(0));
+                            robot.keyRelease(keyCode.get(1));
                         } catch (Exception e) {
                             System.out.println("Bad keycode");
                         }
+                    } else {
+                        if (mouseKeyCodes.contains(keyCode.get(0))) {
+                            robot.mouseRelease(keyCode.get(0));
+                        } else {
+                            try {
+                                robot.keyRelease(keyCode.get(0));
+                            } catch (Exception e) {
+                                System.out.println("Bad keycode");
+                            }
+                        }
                     }
+                } else {
+                    System.out.println("Bad keycode");
+                    System.exit(1);
                 }
             }
         }

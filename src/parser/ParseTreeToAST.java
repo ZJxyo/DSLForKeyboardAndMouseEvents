@@ -54,11 +54,15 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
     }
 
     private void repeatHelper(firstParser.RepeatContext ctx) {
-        int localTimes = Integer.parseInt(ctx.TEXT().getText());
-        for (int i = localTimes; i > 0; i--) {
-            for (firstParser.CodeContext c : ctx.code()) {
-                holdRepeatHelper(c);
+        try {
+            int localTimes = Integer.parseInt(ctx.TEXT().getText());
+            for (int i = localTimes; i > 0; i--) {
+                for (firstParser.CodeContext c : ctx.code()) {
+                    holdRepeatHelper(c);
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Must use an integer for the number of repeats");
         }
     }
 
@@ -73,7 +77,8 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
     }
 
     private void holdHelper(firstParser.HoldContext ctx, boolean first) {
-        loc.add(new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), true));
+        // loc.add(new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), true));
+        loc.add(new Hold(visitKeys(ctx.keys()), true));
         for (firstParser.CodeContext c : ctx.code()) {
             holdRepeatHelper(c);
         }

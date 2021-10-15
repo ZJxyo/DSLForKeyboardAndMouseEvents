@@ -27,13 +27,13 @@ public class Hold extends Code {
         this.keys = keys;
     }
 
-    public Mouse getMouse() {
-        return mouse;
-    }
-
-    public void setMouse(Mouse mouse) {
-        this.mouse = mouse;
-    }
+//    public Mouse getMouse() {
+//        return mouse;
+//    }
+//
+//    public void setMouse(Mouse mouse) {
+//        this.mouse = mouse;
+//    }
 
     public boolean isState() {
         return state;
