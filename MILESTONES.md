@@ -346,10 +346,10 @@ set ac = 20<br/>
 new bc<br/>
 set bc = ac<br/>
 // Perform arithmetics on a variable<br/>
-+ ac, 30<br/>
+\+ ac, 30<br/>
 \- ac, bc<br/>
- - 16, 10<br/>
- * ac, 2<br/>
+\- 16, 10<br/>
+\* ac, 2<br/>
 // Print the value of a variable to console, in this case (20 + 30 - 20) * 2 = 60<br/>
 print ac<br/>
 // Variables can be used in screen coordinates, this is equivalent to 60, 300<br/>
@@ -410,10 +410,10 @@ repeat 10 times {<br/>
 set temp = start<br/>
 hover at 200,start<br/>
 hold left {<br/>
- + temp, 5<br/>
+\+ temp, 5<br/>
 hover at 200, temp<br/>
 hover at 200, 130<br/>
- - start, 21<br/>
+\- start, 21<br/>
 }<br/>
 }<br/>
 <br/>
@@ -480,6 +480,7 @@ In terms of the principle of expressiveness, the expressiveness of our DSL langu
 ## Updates to DSL design:
 - Variable functionality was added to the “wait” command.
 - A  delay variable was added so that the user can choose a specific delay for each command. The default delay is 300ms.
+- See repo for updates to the grammar.
 
 ## Status of implementation:
 - Complete
