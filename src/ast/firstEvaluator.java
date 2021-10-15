@@ -97,11 +97,11 @@ public class firstEvaluator implements firstVisitor<Object> {
                 }
             }
 
-            if (p.getMouse() != null) {
-                Integer xCoord = (Integer)p.getMouse().getCoord().getxCoord().accept(this);
-                Integer yCoord = (Integer)p.getMouse().getCoord().getyCoord().accept(this);
-                robot.mouseMove(xCoord, yCoord);
-            }
+//            if (p.getMouse() != null) {
+//                Integer xCoord = (Integer)p.getMouse().getCoord().getxCoord().accept(this);
+//                Integer yCoord = (Integer)p.getMouse().geatCoord().getyCoord().accept(this);
+//                robot.mouseMove(xCoord, yCoord);
+//            }
         } else {
             // release
             for (List<Integer> keyCode: visit(p.getKeys())) {
@@ -170,29 +170,34 @@ public class firstEvaluator implements firstVisitor<Object> {
                 robot.mouseMove(xCoord, yCoord);
             }
 
-            if (keyCode.size() > 1) {
-                try {
-                    robot.keyPress(keyCode.get(0));
-                    robot.keyPress(keyCode.get(1));
-                    robot.keyRelease(keyCode.get(1));
-                    robot.keyRelease(keyCode.get(0));
-                } catch (Exception e) {
-                    System.out.println("Bad keycode");
-                }
-            } else {
-                if (mouseKeyCodes.contains(keyCode.get(0))) {
-                    // mouse actions
-                    robot.mousePress(keyCode.get(0));
-                    robot.mouseRelease(keyCode.get(0));
-                } else {
-                    // keyboard actions
+            if (keyCode != null) {
+                if (keyCode.size() > 1) {
                     try {
                         robot.keyPress(keyCode.get(0));
+                        robot.keyPress(keyCode.get(1));
+                        robot.keyRelease(keyCode.get(1));
                         robot.keyRelease(keyCode.get(0));
                     } catch (Exception e) {
                         System.out.println("Bad keycode");
                     }
+                } else {
+                    if (mouseKeyCodes.contains(keyCode.get(0))) {
+                        // mouse actions
+                        robot.mousePress(keyCode.get(0));
+                        robot.mouseRelease(keyCode.get(0));
+                    } else {
+                        // keyboard actions
+                        try {
+                            robot.keyPress(keyCode.get(0));
+                            robot.keyRelease(keyCode.get(0));
+                        } catch (Exception e) {
+                            System.out.println("Bad keycode");
+                        }
+                    }
                 }
+            } else {
+                System.out.println("Bad keycode");
+                System.exit(1);
             }
         }
 

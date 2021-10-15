@@ -5,12 +5,17 @@ import java.util.List;
 
 public class Hold extends Code {
     private Keys keys;
-    private Mouse mouse;
+    // private Mouse mouse;
     private boolean state;
 
-    public Hold(Keys keys, Mouse mouse, Boolean state) {
+//    public Hold(Keys keys, Mouse mouse, Boolean state) {
+//        this.keys = keys;
+//        this.mouse = mouse;
+//        this.state = state;
+//    }
+
+    public Hold(Keys keys, Boolean state) {
         this.keys = keys;
-        this.mouse = mouse;
         this.state = state;
     }
 

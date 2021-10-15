@@ -70,7 +70,8 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
     public Code visitHold(firstParser.HoldContext ctx) {
         if (ctx.code() != null) {
             holdHelper(ctx, true);
-            return new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), false);
+            //return new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), false);
+            return new Hold(visitKeys(ctx.keys()), false);
         } else {
             throw new RuntimeException("Hold parse tree with invalid context information");
         }
@@ -83,7 +84,8 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             holdRepeatHelper(c);
         }
         if (!first) {
-            loc.add(new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), false));
+            // loc.add(new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), false));
+            loc.add(new Hold(visitKeys(ctx.keys()), false));
         }
     }
 
