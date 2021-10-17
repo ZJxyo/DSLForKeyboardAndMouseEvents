@@ -10,9 +10,7 @@ import ast.variables.VarPrint;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements firstParserVisitor<Node>  {
     List<Code> loc;
@@ -27,6 +25,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new Program(loc);
     }
 
+    // check whether the given Code obj is either a command, hold, repeat, or var. then processes the obj.
     @Override
     public Code visitCode(firstParser.CodeContext ctx) {
         if (ctx.command() != null) {
@@ -66,6 +65,8 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         }
     }
 
+    // processes the hold object, calls holdHelper to add the start of the hold action to the LOC
+    // holdHelp processes the contents within hold. then adds the end of the hold action to the LOC to release the key
     @Override
     public Code visitHold(firstParser.HoldContext ctx) {
         if (ctx.code() != null) {
@@ -90,6 +91,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         }
     }
 
+    // check if the given obj is a repeat, hold, or otherwise, and processes them.
     private void holdRepeatHelper(firstParser.CodeContext c) {
         if (c.repeat() != null) {
             repeatHelper(c.repeat());
@@ -115,11 +117,13 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         }
     }
 
+    // creates a new object for the wait command
     @Override
     public Wait visitWaitFor(firstParser.WaitForContext ctx) {
         return new Wait(visitExp(ctx.exp()));
     }
 
+    // creates a new object for the press command, with input of keys and mouse location
     @Override
     public Press visitPress(firstParser.PressContext ctx) {
         return new Press(visitKeys(ctx.keys()), visitMouse(ctx.mouse()));
@@ -131,6 +135,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new Hover(visitMouse(ctx.mouse()));
     }
 
+    // creates a new object for the write commmand, with input of the given string
     @Override
     public Write visitWrite(firstParser.WriteContext ctx) {
         return new Write(ctx.STRING().getText());
@@ -146,11 +151,13 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         }
     }
 
+    // creates a new coord object, with inputs of the x and y screen coords
     @Override
     public Coord visitCoord(firstParser.CoordContext ctx) {
         return new Coord(visitExp(ctx.exp().get(0)), visitExp(ctx.exp().get(1)));
     }
 
+    // creates a new keys object, with the given list of keys specified by the user
     @Override
     public Keys visitKeys(firstParser.KeysContext ctx) {
         List<List<Integer>> keys = new ArrayList<>();
@@ -177,11 +184,13 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return null;
     }
 
+    // creates a new declare object, with the given variable name
     @Override
     public VarDeclaration visitDeclare(firstParser.DeclareContext ctx) {
         return new VarDeclaration(ctx.NAME().getText());
     }
 
+    // creates a new assign object, with the variable name and its assignment
     @Override
     public VarAssignment visitAssign(firstParser.AssignContext ctx) {
         return new VarAssignment(ctx.NAME().getText(), visitExp(ctx.exp()));
@@ -200,6 +209,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new VarPrint(visitExp(ctx.exp()));
     }
 
+    // processes exp, returns its assignment if no usage is found, else process usage.
     @Override
     public Exp visitExp(firstParser.ExpContext ctx) {
         if (ctx.usage() != null) {

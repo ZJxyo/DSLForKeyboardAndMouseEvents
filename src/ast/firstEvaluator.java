@@ -1,6 +1,4 @@
 package ast;
-import javafx.scene.input.KeyCode;
-import parser.ParseTreeToAST;
 
 import ast.variables.Number;
 import ast.variables.VarAssignment;
@@ -15,16 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.awt.event.InputEvent;
 
-import static java.awt.event.KeyEvent.VK_ALT;
-import java.util.Locale;
 import java.util.Map;
 
 
 public class firstEvaluator implements firstVisitor<Object> {
     Robot robot;
     private static final Map<String, Integer> symbolTable = new HashMap<>();
+    // env variable for the time delay between executing each command
+    // added to reduce the number of waits needed in the input file when dealing with delayed response
     final String delay = "delay";
 
+    // assigns the robot obj to access mouse and keyboard
     public firstEvaluator(Robot robot) {
         this.robot = robot;
         symbolTable.put(delay, 300);
@@ -51,8 +50,7 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
-
-
+    // no implementation needed since repeat is purely structural
     @Override
     public Object visit(Repeat p) {
         return null;
@@ -64,8 +62,6 @@ public class firstEvaluator implements firstVisitor<Object> {
     @Override
     public Object visit(Hold p) {
         List<Integer> mouseKeyCodes = Arrays.asList(InputEvent.BUTTON1_DOWN_MASK, InputEvent.BUTTON2_DOWN_MASK, InputEvent.BUTTON3_DOWN_MASK);
-
-
 
         if (p.isState()) {
             // press down
@@ -96,11 +92,6 @@ public class firstEvaluator implements firstVisitor<Object> {
                 }
             }
 
-//            if (p.getMouse() != null) {
-//                Integer xCoord = (Integer)p.getMouse().getCoord().getxCoord().accept(this);
-//                Integer yCoord = (Integer)p.getMouse().geatCoord().getyCoord().accept(this);
-//                robot.mouseMove(xCoord, yCoord);
-//            }
         } else {
             // release
             for (List<Integer> keyCode: visit(p.getKeys())) {
@@ -135,7 +126,8 @@ public class firstEvaluator implements firstVisitor<Object> {
 
 
     @Override
-    // assume p is the input time in integer format
+    // processes the wait command, program will wait and do nothing during the specified timespan
+    // exits the program if the given time amount is invalid
     public Object visit(Wait p) {
         try {
             Integer time = (Integer)p.getExpression().accept(this);
@@ -152,13 +144,19 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // returns the list of lists of keycodes for the given set of Keys p
     @Override
     public List<List<Integer>> visit(Keys p) {
         return p.getKeys();
     }
 
     @Override
-    // assume p is a list of list of integer keycodes
+    // assume p is a list of lists of integer keycodes
+    // press is separated between mouse and keyboard, due to the robot lib
+    // all presses are in press + release pairs, to emulate a quick press of buttons and keys
+    // moves the mouse to the specified location, if the specification exists
+    // keys are separated into regular keys and character requiring key combos. For example, "? = shift + /"
+    // terminate program in case of a bad keycode
     public Object visit(Press p) {
         // dummy keycodes for mouse action
         List<Integer> mouseKeyCodes = Arrays.asList(InputEvent.BUTTON1_DOWN_MASK, InputEvent.BUTTON2_DOWN_MASK, InputEvent.BUTTON3_DOWN_MASK);
@@ -277,6 +275,10 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // processes the operations for variables
+    // if the variable name is not found in the symbol table, terminate the program
+    // otherwise, process "+", "-", and "*" respectively. Note, operations are essentially equivalent to "+=", etc.
+    // updates the symbol table post operation, with new var assignment
     @Override
     public Object visit(VarOperation operation) {
         // TODO: throw error if number doesnt exist in map
