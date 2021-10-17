@@ -124,7 +124,7 @@ Examples: </br>
 
 ## Names for Action/Function/Mouse Keys (Case Sensitive) </br>
 #### Action Keys</br>
-alt, esc, backspace, tab, capslock, enter, shift, control, option, command, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, SpaceBar, windows, delete</br>
+alt, esc, backspace, tab, capslock, enter, shift, control, ctrl, option, command, cmd, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, SpaceBar, windows, win, delete</br>
 #### Function Keys</br>
 F1 … F12</br>
 #### Mouse Keys</br>
