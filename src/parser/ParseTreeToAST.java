@@ -17,7 +17,7 @@ import java.util.Map;
 public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements firstParserVisitor<Node>  {
     List<Code> loc;
 
-
+    // adds all the Code objects to a list
     @Override
     public Program visitProgram(firstParser.ProgramContext ctx) {
         loc = new ArrayList<>();
@@ -42,7 +42,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             throw new RuntimeException("Code parse tree with invalid context information");
         }
     }
-
+    // calls repeatHelper and returns Repeat object
     @Override
     public Code visitRepeat(firstParser.RepeatContext ctx) {
         if (ctx.code() != null) {
@@ -52,7 +52,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             throw new RuntimeException("Repeat parse tree with invalid context information");
         }
     }
-
+    // calls holdRepeatHelper a specified number of times
     private void repeatHelper(firstParser.RepeatContext ctx) {
         try {
             int localTimes = Integer.parseInt(ctx.TEXT().getText());
@@ -76,7 +76,8 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             throw new RuntimeException("Hold parse tree with invalid context information");
         }
     }
-
+    //  adds a Hold object with true to the list of codes, calls repeatHelper for each code
+    //  inside HoldContext, if first is false add a new Hold object with false
     private void holdHelper(firstParser.HoldContext ctx, boolean first) {
         // loc.add(new Hold(visitKeys(ctx.keys()), visitMouse(ctx.mouse()), true));
         loc.add(new Hold(visitKeys(ctx.keys()), true));
@@ -98,7 +99,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
             loc.add(this.visitCode(c));
         }
     }
-
+    // checks to see which type of command ctx is, and calls their respective methods
     @Override
     public Command visitCommand(firstParser.CommandContext ctx) {
         if (ctx.waitFor() != null) {
@@ -124,6 +125,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new Press(visitKeys(ctx.keys()), visitMouse(ctx.mouse()));
     }
 
+    // create a new hover object with its mouse object
     @Override
     public Hover visitHover(firstParser.HoverContext ctx) {
         return new Hover(visitMouse(ctx.mouse()));
@@ -134,6 +136,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new Write(ctx.STRING().getText());
     }
 
+    // checks if there is a mouse context, and returns a new mouse object
     @Override
     public Mouse visitMouse(firstParser.MouseContext ctx) {
         if (ctx == null) {
@@ -158,6 +161,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new Keys(keys);
     }
 
+    // checks the type of variable command of ctx and calls the respective method
     @Override
     public Code visitVar(firstParser.VarContext ctx) {
         if (ctx.declare() != null) {
@@ -183,12 +187,14 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         return new VarAssignment(ctx.NAME().getText(), visitExp(ctx.exp()));
     }
 
+    // creates a new var operation object, with its operation, name and exp
     @Override
     public VarOperation visitOperation(firstParser.OperationContext ctx) {
         return new VarOperation(ctx.OPERATION().getText(),
                                 ctx.NAME().getText(), visitExp(ctx.exp()));
     }
 
+    // create a new var print object, with its exp
     @Override
     public VarPrint visitPrint(firstParser.PrintContext ctx) {
         return new VarPrint(visitExp(ctx.exp()));
@@ -205,6 +211,7 @@ public class ParseTreeToAST extends AbstractParseTreeVisitor<Node> implements fi
         }
     }
 
+    // creates a new variable name
     @Override
     public VarName visitUsage(firstParser.UsageContext ctx) {
         return new VarName(ctx.NAME().getText());

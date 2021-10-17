@@ -10,12 +10,6 @@ import ast.variables.VarOperation;
 import ast.variables.VarPrint;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.security.Key;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +30,8 @@ public class firstEvaluator implements firstVisitor<Object> {
         symbolTable.put(delay, 300);
     }
 
+    // loops through all the codes objects from program p using the visitor pattern
+    // inserts a new robot delay time between each iteration
     @Override
     public Object visit(Program p) {
         for (Code s : p.getCodes()) {
@@ -62,6 +58,9 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // if the hold object's state is true press the specified key, if it is false release the key
+    // if the keycode is more than one press both specified keys
+    // else check if it is a mouse click, else it is a single key press
     @Override
     public Object visit(Hold p) {
         List<Integer> mouseKeyCodes = Arrays.asList(InputEvent.BUTTON1_DOWN_MASK, InputEvent.BUTTON2_DOWN_MASK, InputEvent.BUTTON3_DOWN_MASK);
@@ -204,6 +203,7 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // moves the mouse to the specified x,y coordinates
     @Override
     public Object visit(Hover p) {
         Integer xCoord = (Integer)p.getMouse().getCoord().getxCoord().accept(this);
@@ -213,6 +213,9 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // presses a sequence of specified keys
+    // if the keycode size is greater than one, it means two key presses at the same time
+    // else it is just a single key press
     @Override
     public Object visit(Write p) {
         // https://stackoverflow.com/questions/29665534/type-a-string-using-java-awt-robot
@@ -241,28 +244,30 @@ public class firstEvaluator implements firstVisitor<Object> {
         return null;
     }
 
+    // returns the coordinates of the mouse object
     @Override
     public Object visit(Mouse p) {
         return p.getCoord();
     }
 
+    // no implementation needed, just return null
     @Override
     public Object visit(Coord p) {
         return null;
     }
 
+    // declares new variable by putting the variable name as the key and a default value of null in symbolTable
     @Override
     public Object visit(VarDeclaration dec) {
-        System.out.println("testing declaration");
+        //System.out.println("testing declaration");
         symbolTable.put(dec.getName(), null);
         return null;
     }
 
+    // checks if there is the specified variable name and puts the value in the symbolTable
     @Override
     public Object visit(VarAssignment assignment) {
-        System.out.println("testing assignment");
         Integer assignValue = (Integer)assignment.getExpression().accept(this);
-        // TODO: error if not declared
         if (symbolTable.containsKey(assignment.getName())) {
             symbolTable.put(assignment.getName(), assignValue);
         } else {
@@ -296,6 +301,7 @@ public class firstEvaluator implements firstVisitor<Object> {
         return ret;
     }
 
+    // returns the value of the corresponding variable name
     @Override
     public Integer visit(VarName name) {
         if (symbolTable.containsKey(name.getName())) {
@@ -307,11 +313,13 @@ public class firstEvaluator implements firstVisitor<Object> {
         }
     }
 
+    // return the integer field of the number object
     @Override
     public Integer visit(Number number) {
         return number.getNum();
     }
 
+    // prints the corresponding variable of exp
     @Override
     public Object visit(VarPrint print) {
         System.out.println("PRINTING " + print.getPrint().accept(this));

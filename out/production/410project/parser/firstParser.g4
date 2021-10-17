@@ -4,9 +4,9 @@ options { tokenVocab = firstLexer; }
 program : code+ ;
 code : command | repeat | hold | var;
 repeat : REPEAT_START TEXT TIMES LEFT_BRACKET code+ RIGHT_BRACKET ;
-hold : HOLD_START keys mouse? LEFT_BRACKET code+ RIGHT_BRACKET ;
+hold : HOLD_START keys LEFT_BRACKET code+ RIGHT_BRACKET ;
 command : waitFor | press | hover | write;
-waitFor : WAIT TEXT ;
+waitFor : WAIT exp NEWLINE;
 press : PRESS keys mouse? ;
 hover : HOVER mouse ;
 write: WRITE STRING ;
