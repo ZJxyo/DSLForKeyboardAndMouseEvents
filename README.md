@@ -1,8 +1,14 @@
 # Project Documentation
 ## How to Run the DSL Program? </br>
+### IDE
 1. Open the project in an IDE, such as intellij. </br>
 2. Write the commands for the DSL program in the ‘input’ file. </br>
 3. Run the main function that is inside the UI folder. </br>
+### Batch Executable
+1. Unzip the zip file. </br>
+2. Write the commands for the DSL program in the ‘input’ file. </br> 
+3. Drag the ‘input’ file directly onto the batch file. </br> </br>
+Note: use the IDE in case this fails, limited testing on windows
 
 ## DSL Commands </br>
 
