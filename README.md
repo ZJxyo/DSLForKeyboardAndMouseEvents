@@ -8,7 +8,7 @@
 1. Unzip the zip file. </br>
 2. Write the commands for the DSL program in the ‘input’ file. </br> 
 3. Drag the ‘input’ file directly onto the batch file. </br> </br>
-Note: use the IDE in case this fails, limited testing on windows
+Note: use the IDE in case this fails, limited testing on windows.
 
 ## DSL Commands </br>
 
@@ -21,10 +21,11 @@ The code block of repeat can accept wait, press, hover, write, repeat, hold, and
 The number of times repeated must be an integer.
 
 Example:
-// Press the “a” key 5 times
+
+    // Press the “a” key 5 times
     repeat 5 times {
-press a
-}
+    press a
+    }
 
 
 ### Hold</br>
