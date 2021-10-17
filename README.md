@@ -8,7 +8,7 @@
 1. Unzip the zip file. </br>
 2. Write the commands for the DSL program in the ‘input’ file. </br> 
 3. Drag the ‘input’ file directly onto the batch file. </br> </br>
-Note: use the IDE in case this fails, limited testing on windows.
+Note: use the IDE in case this fails, tested for windows only (limited testing).
 
 ## DSL Commands </br>
 
