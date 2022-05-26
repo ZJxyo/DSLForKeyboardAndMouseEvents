@@ -136,3 +136,7 @@ left, middle, right</br>
 - For dynamic time related events, such as loading a web page, the users should insert wait commands manually if further actions are to be performed on the new page. Else the next command will execute before the web page finishes loading.
 - For shortcuts and similar activities, users should realize they need to bring the appropriate application into focus manually as required. It is recommended to add a wait command before executing other commands so that the user has a sufficient time window to open the proper application.
 - To emulate a dragging action with the mouse. Users could move the cursor while holding the corresponding mouse button.
+
+---
+### Contributors:
+UBC CPSC410 2021 T1 Group 17
